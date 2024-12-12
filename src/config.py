@@ -5,7 +5,8 @@ from dotenv import dotenv_values
 
 
 defaults = {
-    'ingest.dotenv_key': 'SOURCE_TSV'
+    'ingest.dotenv_key': 'SOURCE_TSV',
+    'ingest.sep': '\t'
 }
 
 
@@ -29,7 +30,6 @@ class Config(UserDict):
         return value
 
 
-# Function to load the TOML configuration file
 def load_config(file_path):
     try:
         with open(file_path, "rb") as f:
@@ -39,14 +39,15 @@ def load_config(file_path):
 
     # Check if input path needs to be loaded from .env
     use_dotenv = config.get_path('ingest.use_dotenv', True)
+    if 'ingest' not in config:
+        config['ingest'] = {}
+    if 'sep' not in config['ingest']:
+        config['ingest']['sep'] = defaults['ingest.sep']
     if use_dotenv:
         dotenv_config = dotenv_values()
         dotenv_key = config.get_path('ingest.dotenv_key',
                                      default=defaults['ingest.dotenv_key'])
         if not (dotenv_key and dotenv_key in dotenv_config):
             raise ValueError('Cannot use .env for loading input')
-        if 'ingest' not in config:
-            config['ingest'] = {}
         config['ingest']['file_path'] = dotenv_config[dotenv_key]
-
     return config

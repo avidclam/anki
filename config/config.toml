@@ -2,3 +2,25 @@
 use_dotenv = true
 dotenv_key = "SOURCE_TSV"
 file_path = "table.tsv"  # Use this, if not using use_dotenv
+sep = "\t" # Be careful when changing the separator
+
+# Rename _column_mapping to column_mapping to actually use the mapping
+# Required columns are:
+#   sign, article, left, word, meaning, right, stem, plural,
+#   present, past, perfect, translation, reverse, example, topic
+[_column_mapping]
+Schild = "sign"
+Artikel = "article"
+links = "left"
+Deutsch = "word"
+Bedeutung = "meaning"
+rechts = "right"
+Verbstamm = "stem"
+Plural = "plural"
+"Präsens" = "resent"
+"Präteritum" = "past"
+Perfekt = "perfect"
+Englisch = "translation"
+R = "reverse"
+Beispiel = "example"
+Thema = "topic"

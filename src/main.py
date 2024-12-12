@@ -1,5 +1,6 @@
 from pathlib import Path
 from src.config import load_config
+from src.ingest import load_dataset
 
 def main(top_dir: Path, output_dir: Path = None) -> str | None:
     config_dir = top_dir / "config"
@@ -9,4 +10,7 @@ def main(top_dir: Path, output_dir: Path = None) -> str | None:
         output_dir = top_dir / "output"
     # Load configuration
     cfg = load_config(config_file)
+    # Load Dataset
+    df = load_dataset(cfg)
+    print(df)
     return None
