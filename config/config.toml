@@ -1,0 +1,4 @@
+[ingest]
+use_dotenv = true
+dotenv_key = "SOURCE_TSV"
+file_path = "table.tsv"  # Use this, if not using use_dotenv
