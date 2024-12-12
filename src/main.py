@@ -1,6 +1,8 @@
 from pathlib import Path
 from src.config import load_config
 from src.ingest import load_dataset
+from src.design import load_design
+
 
 def main(top_dir: Path, output_dir: Path = None) -> str | None:
     config_dir = top_dir / "config"
@@ -12,5 +14,6 @@ def main(top_dir: Path, output_dir: Path = None) -> str | None:
     cfg = load_config(config_file)
     # Load Dataset
     df = load_dataset(cfg)
-    print(df)
+    # Load design
+    design = load_design(design_dir)
     return None

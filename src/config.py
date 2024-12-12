@@ -6,7 +6,8 @@ from dotenv import dotenv_values
 
 defaults = {
     'ingest.dotenv_key': 'SOURCE_TSV',
-    'ingest.sep': '\t'
+    'ingest.sep': '\t',
+    'design.default': 'default'
 }
 
 
@@ -30,7 +31,7 @@ class Config(UserDict):
         return value
 
 
-def load_config(file_path):
+def load_config(file_path) -> Config:
     try:
         with open(file_path, "rb") as f:
             config = Config(tomllib.load(f))
